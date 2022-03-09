@@ -3,8 +3,8 @@
 const express = require('express');
 const app = express();
 
-require('./bootstrap')(app, express);
-require('./routes')(app);
+require('@bootstrap')(app, express);
+require('@routes')(app);
 
 module.exports = () => {
     const port = process.env.APP_PORT;

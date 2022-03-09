@@ -1,6 +1,6 @@
 'use strict';
 
-const postModel = require('../../models/posts');
+const postModel = require('@models/posts');
 
 exports.index = async (req, res) => {
     const posts = await postModel.findAll();

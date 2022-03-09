@@ -26,9 +26,20 @@
     "express": "^4.17.3",
     "express-handlebars": "^5.3.5",
     "express-session": "^1.17.2",
+    "module-alias": "^2.2.2",
     "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@database": "./database",
+    "@bootstrap": "app/bootstrap",
+    "@controllers": "app/controllers",
+    "@middlewares": "app/middlewares",
+    "@models": "app/models",
+    "@routes": "app/routes",
+    "@services": "app/services"
   }
 }
