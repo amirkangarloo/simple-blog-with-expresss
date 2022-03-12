@@ -11,3 +11,12 @@ exports.findAll = async () => {
     `);
     return rows;
 };
+
+exports.create = async (postData) => {
+    const [result] = await db.query(
+        `INSERT INTO posts SET ?`,
+        [postData]
+    );
+    console.log({result});
+    return result;
+};

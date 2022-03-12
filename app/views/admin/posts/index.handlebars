@@ -57,8 +57,11 @@
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
                   <input class="form-control" type="text" placeholder="Search ....">
+                </div>
+                <div class="col-md-3">
+                  <a class="btn btn-default" href="/admin/posts/create">Add new post</a>
                 </div>
               </div>
               <br>
@@ -78,7 +81,7 @@
                 <tbody>
                 {{#each posts}}
                   <tr>
-                  <td> {{this.id}} </td>
+                  <td> {{@index}} </td>
                   <td> {{this.title}} </td>
                   <td> {{this.full_name}} </td>
                   <td> {{this.views}} </td>
