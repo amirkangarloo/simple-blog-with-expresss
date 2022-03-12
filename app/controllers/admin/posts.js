@@ -5,6 +5,7 @@ const userModel = require('@models/users');
 const dateService = require('@services/dateService');
 
 exports.index = async (req, res) => {
+    const users = await userModel.findAll(['id', 'full_name']);
     const posts = await postModel.findAll();
     const peresentedPosts = posts.map((post) => {
         post.created = dateService.normalDate(post.created_at);
@@ -14,7 +15,8 @@ exports.index = async (req, res) => {
         'admin/posts/index',
         {
             layout: "admin",
-            posts: peresentedPosts
+            posts: peresentedPosts,
+            users
         }
     );
 }
