@@ -41,6 +41,7 @@
     "@middlewares": "app/middlewares",
     "@models": "app/models",
     "@routes": "app/routes",
-    "@services": "app/services"
+    "@services": "app/services",
+    "@validators": "app/validators"
   }
 }

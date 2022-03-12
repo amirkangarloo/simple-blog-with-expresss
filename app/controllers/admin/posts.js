@@ -3,6 +3,7 @@
 const postModel = require('@models/posts');
 const userModel = require('@models/users');
 const dateService = require('@services/dateService');
+const postValidator = require('@validators/post');
 
 exports.index = async (req, res) => {
     const users = await userModel.findAll(['id', 'full_name']);
@@ -33,6 +34,7 @@ exports.create = async (req, res) => {
 };
 
 exports.store = async (req, res) => {
+    const users = await userModel.findAll(['id', 'full_name']);
     const postData = {
         title: req.body.postTitle,
         author_id: req.body.author,
@@ -40,6 +42,18 @@ exports.store = async (req, res) => {
         content: req.body.editor1,
         status: req.body.status
     };
+    const validation = postValidator.create(postData);
+    if (validation.length > 0) {
+        return res.render(
+                'admin/posts/create',
+                {
+                    layout: "admin",
+                    errors: validation,
+                    hasError: validation.length > 0,
+                    users
+                }
+        );
+    }
     const result = await postModel.create(postData);
-    res.send(req.body);
+    res.redirect('/admin/posts');
 };
