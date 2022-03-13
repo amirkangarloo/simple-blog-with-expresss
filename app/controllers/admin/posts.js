@@ -57,3 +57,9 @@ exports.store = async (req, res) => {
     const result = await postModel.create(postData);
     res.redirect('/admin/posts');
 };
+
+exports.remove = async (req, res) => {
+    const postId = req.params.postId;
+    const result = await postModel.delete(postId);
+    res.redirect('/admin/posts');
+};

@@ -8,6 +8,7 @@ exports.findAll = async () => {
         FROM posts
         INNER JOIN users
         ON posts.author_id=users.id
+        ORDER BY posts.created_at DESC
     `);
     return rows;
 };
@@ -17,6 +18,13 @@ exports.create = async (postData) => {
         `INSERT INTO posts SET ?`,
         [postData]
     );
-    console.log({result});
+    return result;
+};
+
+exports.delete = async (postId) => {
+    const [result] = await db.query(
+        `DELETE FROM posts WHERE id=?`,
+        [postId]
+    );
     return result;
 };
