@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1><span class="glyphicon glyphicon-text-width" aria-hidden="true"></span> Create Post<small> Write new
+        <h1><span class="glyphicon glyphicon-text-width" aria-hidden="true"></span> Edit Post<small> Edit old
             article</small></h1>
       </div>
     </div>
@@ -14,7 +14,7 @@
     <ol class="breadcrumb">
       <li><a href="/admin/dashboard">Dashboard</a></li>
       <li><a href="/admin/posts">Posts</a></li>
-      <li class="active">Create Post</li>
+      <li class="active">Edit Post</li>
     </ol>
   </div>
 </section>
@@ -42,10 +42,10 @@
         <!-- Website Overview -->
         <div class="panel panel-default">
           <div class="panel-heading main-color-bg">
-            <h3 class="panel-title">Create Post</h3>
+            <h3 class="panel-title">Edit Post</h3>
           </div>
           <div class="panel-body">
-            <form action="/admin/posts/store" method="POST">
+            <form action="/admin/posts/update/{{post.id}}" method="POST">
               
               {{#if hasError}}
                 {{#each errors}}
@@ -57,15 +57,17 @@
 
               <div class="form-group">
                 <label>Post Title</label>
-                <input name="postTitle" type="text" class="form-control" placeholder="Post Title" required>
+                <input name="postTitle" type="text" class="form-control" value="{{post.title}}" placeholder="Post Title" required>
               </div>
               <div class="form-group">
                 <label>Post Slug</label>
-                <input name="postSlug" type="text" class="form-control" placeholder="Post slug" required>
+                <input name="postSlug" type="text" class="form-control" value="{{post.slug}}" placeholder="Post slug" required>
               </div>
               <div class="form-group">
                 <label>Post Body</label>
-                <textarea name="editor1" class="form-control" placeholder="Post Body"></textarea>
+                <textarea name="editor1" class="form-control" placeholder="Post Body">
+                  {{post.content}}
+                </textarea>
               </div>
               <label>Author</label>
               <div class="form-group">
