@@ -81,7 +81,7 @@
                 <tbody>
                 {{#each posts}}
                   <tr>
-                  <td> {{@index}} </td>
+                  <td> {{#counter @index}}  {{/counter}} </td>
                   <td> {{this.title}} </td>
                   <td> {{this.full_name}} </td>
                   <td> {{this.views}} </td>

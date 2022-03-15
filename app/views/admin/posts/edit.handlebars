@@ -73,24 +73,26 @@
               <div class="form-group">
                 <select name="author" class="form-control">
                   {{#each users}}
-                  <option value="{{this.id}}"> {{this.full_name}} </option>
+                  <option value="{{this.id}}" {{#isPostAuthor this.id}} selected {{/isPostAuthor}} > 
+                    {{this.full_name}} 
+                  </option>
                   {{/each}}
                 </select>
               </div>
               <label>Status</label>
               <div class="checkbox">
                 <label>
-                  <input name="status" type="checkbox" value="0"> Draft
+                  <input name="status" type="radio" value="0" {{#postStatus 0}} checked {{/postStatus}}> Draft
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input name="status" type="checkbox" value="1"> Reviewing
+                  <input name="status" type="radio" value="1" {{#postStatus 1}} checked {{/postStatus}}> Reviewing
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input name="status" type="checkbox" value="2"> Published
+                  <input name="status" type="radio" value="2" {{#postStatus 2}} checked {{/postStatus}}> Published
                 </label>
               </div>
               <button type="submit" class="btn btn-default">Submit</button>

@@ -13,11 +13,15 @@ exports.index = async (req, res) => {
         return post;
     });
     res.render(
-        'admin/posts/index',
-        {
+        'admin/posts/index', {
             layout: "admin",
             posts: peresentedPosts,
-            users
+            users: users,
+            helpers: {
+                counter: (index) => {
+                    return index + 1;
+                }
+            }
         }
     );
 }
@@ -25,8 +29,7 @@ exports.index = async (req, res) => {
 exports.create = async (req, res) => {
     const users = await userModel.findAll(['id', 'full_name']);
     res.render(
-        'admin/posts/create',
-        {
+        'admin/posts/create', {
             layout: "admin",
             users
         }
@@ -45,13 +48,12 @@ exports.store = async (req, res) => {
     const validation = postValidator.create(postData);
     if (validation.length > 0) {
         return res.render(
-                'admin/posts/create',
-                {
-                    layout: "admin",
-                    errors: validation,
-                    hasError: validation.length > 0,
-                    users
-                }
+            'admin/posts/create', {
+                layout: "admin",
+                errors: validation,
+                hasError: validation.length > 0,
+                users
+            }
         );
     }
     const result = await postModel.create(postData);
@@ -75,11 +77,18 @@ exports.edit = async (req, res) => {
     const post = await postModel.find(postId);
     const users = await userModel.findAll(['id', 'full_name']);
     res.render(
-        'admin/posts/edit',
-        {
+        'admin/posts/edit', {
             layout: "admin",
-            users,
-            post
+            users: users,
+            post: post,
+            helpers: {
+                isPostAuthor: (userId, options) => {
+                    return post.author_id === userId ? options.fn(this) : options.inverse(this);
+                },
+                postStatus: (status, options) => {
+                    return post.status === status ? options.fn(this) : options.inverse(this);
+                }
+            }
         }
     );
 };
