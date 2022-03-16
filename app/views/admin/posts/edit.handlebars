@@ -82,17 +82,17 @@
               <label>Status</label>
               <div class="checkbox">
                 <label>
-                  <input name="status" type="radio" value="0" {{#postStatus 0}} checked {{/postStatus}}> Draft
+                  <input name="status" type="radio" value="{{postStatus.DRAFT}}" {{#postStatus postStatus.DRAFT}} checked {{/postStatus}}> Draft
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input name="status" type="radio" value="1" {{#postStatus 1}} checked {{/postStatus}}> Reviewing
+                  <input name="status" type="radio" value="{{postStatus.REVIEWING}}" {{#postStatus postStatus.REVIEWING}} checked {{/postStatus}}> Reviewing
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input name="status" type="radio" value="2" {{#postStatus 2}} checked {{/postStatus}}> Published
+                  <input name="status" type="radio" value="{{postStatus.PUBLISHED}}" {{#postStatus postStatus.PUBLISHED}} checked {{/postStatus}}> Published
                 </label>
               </div>
               <button type="submit" class="btn btn-default">Submit</button>

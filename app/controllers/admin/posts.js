@@ -1,6 +1,7 @@
 'use strict';
 
 const postModel = require('@models/posts');
+const {postStatus} = require('@models/posts/postStatus');
 const userModel = require('@models/users');
 const dateService = require('@services/dateService');
 const postValidator = require('@validators/post');
@@ -17,6 +18,7 @@ exports.index = async (req, res) => {
             layout: "admin",
             posts: peresentedPosts,
             users: users,
+            postStatus: postStatus,
             helpers: {
                 counter: (index) => {
                     return index + 1;
@@ -31,6 +33,7 @@ exports.create = async (req, res) => {
     res.render(
         'admin/posts/create', {
             layout: "admin",
+            postStatus: postStatus,
             users
         }
     );
@@ -81,6 +84,7 @@ exports.edit = async (req, res) => {
             layout: "admin",
             users: users,
             post: post,
+            postStatus: postStatus,
             helpers: {
                 isPostAuthor: (userId, options) => {
                     return post.author_id === userId ? options.fn(this) : options.inverse(this);
