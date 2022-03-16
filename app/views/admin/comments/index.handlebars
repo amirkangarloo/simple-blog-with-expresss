@@ -63,6 +63,7 @@
                                 <th>Comment</th>
                                 <th>Article</th>
                                 <th>Created</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                             {{#each comments}}
@@ -75,10 +76,11 @@
                                 </td>
                                 <td> {{this.title}} </td>
                                 <td> {{this.created}} </td>
+                                <td> <span class="glyphicon {{#commentConfirmStatus this.status}} {{/commentConfirmStatus}} " ></span> </td>
                                 <td>
-                                    <a class="btn btn-default" href="#">Confirm</a> 
-                                    <a class="btn btn-default" href="#">Reject</a> 
-                                    <a class="btn btn-danger" href="#">Delete</a>
+                                    <a class="btn btn-default" href="/admin/comments/confirm/{{this.id}}">Confirm</a> 
+                                    <a class="btn btn-default" href="/admin/comments/reject/{{this.id}}">Reject</a> 
+                                    <a class="btn btn-danger" href="/admin/comments/delete/{{this.id}}">Delete</a>
                                 </td>
                             </tr>
                             {{/each}}
