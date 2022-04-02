@@ -85,8 +85,8 @@
                   <td> {{this.email}} </td>
                   <td> {{this.created}} </td>
                   <td>
-                    <a class="btn btn-default" href="#">Edit</a>
-                    <a class="btn btn-danger" href="#">Delete</a>
+                    <a class="btn btn-default" href="/admin/users/edit/{{this.id}}">Edit</a>
+                    <a class="btn btn-danger" href="/admin/users/delete/{{this.id}}">Delete</a>
                   </td>
                 </tr>
                 {{/each}}

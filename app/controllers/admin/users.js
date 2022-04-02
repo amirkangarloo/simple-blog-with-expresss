@@ -1,11 +1,13 @@
 'use strict';
 
 const userModel = require('@models/users');
-const {userRole} = require('@models/users/userRole');
+const {
+    userRole
+} = require('@models/users/userRole');
 const dateService = require('@services/dateService');
 
 exports.index = async (req, res) => {
-    const users = await userModel.findAll(['full_name', 'email', 'created_at']);
+    const users = await userModel.findAll(['full_name', 'email', 'created_at', 'id']);
     const peresentedUsers = users.map((user) => {
         user.created = dateService.normalDate(user.created_at);
         return user;
@@ -34,9 +36,9 @@ exports.create = async (req, res) => {
 
 exports.store = async (req, res) => {
     const userData = {
-        full_name: req.body.userFullName,
-        email: req.body.userEmail,
-        password: req.body.userPassword,
+        full_name: req.body.full_name,
+        email: req.body.email,
+        password: req.body.password,
         role: req.body.role
     };
 
@@ -44,52 +46,48 @@ exports.store = async (req, res) => {
     res.redirect('/admin/users');
 };
 
-// exports.remove = async (req, res) => {
-//     const postId = req.params.postId;
-//     if (parseInt(postId) === 0) {
-//         return res.redirect('/admin/posts');
-//     }
-//     const result = await postModel.delete(postId);
-//     res.redirect('/admin/posts');
-// };
+exports.remove = async (req, res) => {
+    const userId = req.params.userId;
+    if (parseInt(userId) === 0) {
+        return res.redirect('/admin/users');
+    }
+    const result = await userModel.delete(userId);
+    res.redirect('/admin/users');
+};
 
-// exports.edit = async (req, res) => {
-//     const postId = req.params.postId;
-//     if (parseInt(postId) === 0) {
-//         return res.redirect('/admin/posts');
-//     }
-//     const post = await postModel.find(postId);
-//     const users = await userModel.findAll(['id', 'full_name']);
-//     res.render(
-//         'admin/posts/edit', {
-//             layout: "admin",
-//             users: users,
-//             post: post,
-//             postStatus: postStatus,
-//             helpers: {
-//                 isPostAuthor: (userId, options) => {
-//                     return post.author_id === userId ? options.fn(this) : options.inverse(this);
-//                 },
-//                 postStatus: (status, options) => {
-//                     return post.status === status ? options.fn(this) : options.inverse(this);
-//                 }
-//             }
-//         }
-//     );
-// };
+exports.edit = async (req, res) => {
+    const userId = req.params.userId;
+    if (parseInt(userId) === 0) {
+        return res.redirect('/admin/users');
+    }
+    const user = await userModel.find(userId);
+    res.render(
+        'admin/users/edit', {
+            layout: "admin",
+            user: user,
+            userRole: userRole,
+            helpers: {
+                userRole: (role, options) => {
+                    return user.role === role ? options.fn(this) : options.inverse(this);
+                }
+            }
+        }
+    );
+};
 
-// exports.update = async (req, res) => {
-//     const postId = req.params.postId;
-//     const postData = {
-//         title: req.body.postTitle,
-//         author_id: req.body.author,
-//         slug: req.body.postSlug,
-//         content: req.body.editor1,
-//         status: req.body.status
-//     };
-//     if (parseInt(postId) === 0) {
-//         return res.redirect('/admin/posts');
-//     }
-//     const result = await postModel.update(postId, postData);
-//     res.redirect('/admin/posts');
-// };
+exports.update = async (req, res) => {
+    const userId = req.params.userId;
+    const userData = {
+        full_name: req.body.full_name,
+        email: req.body.email,
+        password: req.body.password,
+        role: req.body.role
+    };
+
+    if (parseInt(userId) === 0) {
+        return res.redirect('/admin/users');
+    }
+
+    const result = await userModel.update(userId, userData);
+    res.redirect('/admin/users');
+};
