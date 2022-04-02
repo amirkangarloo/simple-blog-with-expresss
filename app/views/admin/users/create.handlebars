@@ -1,0 +1,86 @@
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><span class="glyphicon glyphicon-text-width" aria-hidden="true"></span> Create User<small> Add new
+            user</small></h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="breadcrumb">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/admin/dashboard">Dashboard</a></li>
+      <li><a href="/admin/users">Users</a></li>
+      <li class="active">Create user</li>
+    </ol>
+  </div>
+</section>
+
+<section id="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="/admin/dashboard" class="list-group-item">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard
+          </a>
+          <a href="/admin/posts" class="list-group-item"><span class="glyphicon glyphicon-pencil"
+              aria-hidden="true"></span> Posts </a>
+          <a href="/admin/comments" class="list-group-item"><span class="glyphicon glyphicon-comment"
+              aria-hidden="true"></span> Comments </a>
+          <a href="/admin/users" class="list-group-item"><span class="glyphicon glyphicon-user"
+              aria-hidden="true"></span> Users </a>
+          <a href="/admin/settings" class="list-group-item"><span class="glyphicon glyphicon-wrench"
+              aria-hidden="true"></span>
+            Settings <span class="badge"></span></a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <!-- Website Overview -->
+        <div class="panel panel-default">
+          <div class="panel-heading main-color-bg">
+            <h3 class="panel-title">Create users</h3>
+          </div>
+          <div class="panel-body">
+            <form action="/admin/users/store" method="POST">
+
+              <div class="form-group">
+                <label>Full Name</label>
+                <input name="userFullName" type="text" class="form-control" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input name="userEmail" type="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input name="userPassword" type="password" class="form-control" placeholder="Password" required>
+              </div>
+              <label>Role</label>
+              <div class="checkbox">
+                <label>
+                  <input name="role" type="radio" checked value="{{userRole.SUBSCRIBER}}"> Subscriber
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="role" type="radio" value="{{userRole.WRITER}}"> Writer
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="role" type="radio" value="{{userRole.ADMIN}}"> Admin
+                </label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
