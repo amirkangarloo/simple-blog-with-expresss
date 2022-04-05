@@ -15,7 +15,7 @@ exports.doLogin = async (req, res) => {
     if (!user) {
         return res.redirect('/auth/login');
     }
-    // req.session.user = user;
+    req.session.user = user;
     const pathToRedirect = user.role === userRole.ADMIN || user.role === userRole.WRITER ? '/admin/dashboard' : '/';
     res.redirect(pathToRedirect);
 };
