@@ -2,7 +2,7 @@
 
 module.exports = (req, res, next) => {
     
-    if (!req.session.hasOwnProperty('user')) {
+    if (req.session.hasOwnProperty('user')) {
         return res.redirect('/');
     }
 

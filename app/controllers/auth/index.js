@@ -19,5 +19,18 @@ exports.doLogin = async (req, res) => {
     const pathToRedirect = user.role === userRole.ADMIN || user.role === userRole.WRITER ? '/admin/dashboard' : '/';
     res.redirect(pathToRedirect);
 };
-exports.showRegister = (req, res) => {};
-exports.doRegister = (req, res) => {};
+exports.showRegister = (req, res) => {
+    res.render('auth/register', {
+        layout: "auth"
+    });
+};
+exports.doRegister = async (req, res) => {
+    const {email, password, confirm_password} = req.body;
+    const newUserId = await authService.register(email, password);
+
+    if (!newUserId) {
+        return res.redirect('/auth/register');
+    }
+
+    return res.redirect('/auth/login');
+};
