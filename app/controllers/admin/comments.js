@@ -14,6 +14,7 @@ exports.index = async (req, res) => {
         'admin/comments/index',
         {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             comments: peresentComments,
             helpers: {
                 commentConfirmStatus: (status) => {

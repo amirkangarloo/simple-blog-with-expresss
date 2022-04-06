@@ -12,6 +12,7 @@ exports.index = async (req, res) => {
     res.render(
         'admin/settings/index', {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             config: presentedSettings,
             settingStatus: settingStatus,
             helpers: {

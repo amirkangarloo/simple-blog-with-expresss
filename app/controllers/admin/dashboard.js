@@ -15,6 +15,7 @@ exports.index = async (req, res) => {
         'admin/dashboard/index',
         {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             ...data,
             users
         }

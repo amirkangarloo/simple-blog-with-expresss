@@ -15,6 +15,7 @@ exports.index = async (req, res) => {
     res.render(
         'admin/users/index', {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             users: peresentedUsers,
             helpers: {
                 counter: (index) => {
@@ -29,6 +30,7 @@ exports.create = async (req, res) => {
     res.render(
         'admin/users/create', {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             userRole: userRole
         }
     );
@@ -64,6 +66,7 @@ exports.edit = async (req, res) => {
     res.render(
         'admin/users/edit', {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             user: user,
             userRole: userRole,
             helpers: {

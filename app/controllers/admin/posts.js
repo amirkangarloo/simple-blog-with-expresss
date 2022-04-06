@@ -16,6 +16,7 @@ exports.index = async (req, res) => {
     res.render(
         'admin/posts/index', {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             posts: peresentedPosts,
             users: users,
             postStatus: postStatus,
@@ -33,6 +34,7 @@ exports.create = async (req, res) => {
     res.render(
         'admin/posts/create', {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             postStatus: postStatus,
             users
         }
@@ -53,6 +55,7 @@ exports.store = async (req, res) => {
         return res.render(
             'admin/posts/create', {
                 layout: "admin",
+                currentUser: req.session.user.full_name,
                 errors: validation,
                 hasError: validation.length > 0,
                 users
@@ -82,6 +85,7 @@ exports.edit = async (req, res) => {
     res.render(
         'admin/posts/edit', {
             layout: "admin",
+            currentUser: req.session.user.full_name,
             users: users,
             post: post,
             postStatus: postStatus,
