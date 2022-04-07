@@ -18,6 +18,7 @@ module.exports = (app, express) => {
         secret: 'd18aa321f3a54daa5fd4ddasa5343as',
         resave: true,
         saveUninitialized: true,
-        name: 'my_session'
+        name: 'my_session',
+        unset: 'destroy'
       }));
 };
