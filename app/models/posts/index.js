@@ -2,15 +2,26 @@
 
 const db = require('@database/mysql');
 
-exports.findAll = async () => {
+exports.findAll = async (page=1, postsPerPage=10) => {
+    
+    const offset = (page - 1) * postsPerPage;
+
     const [rows, fields] = await db.query(`
         SELECT posts.*,users.full_name
         FROM posts
         LEFT JOIN users
         ON posts.author_id=users.id
         ORDER BY posts.created_at DESC
+        LIMIT ${offset},${postsPerPage}
     `);
     return rows;
+};
+
+exports.count = async () => {
+    const [rows, fields] = await db.query(`
+        SELECT COUNT(id) as postsCount FROM posts 
+    `);
+    return rows[0].postsCount;
 };
 
 exports.find = async (postId) => {

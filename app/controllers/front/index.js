@@ -2,11 +2,20 @@
 
 const postModel = require('@models/posts');
 const dateService = require('@services/dateService');
+const paginationService = require('@services/paginationService');
 const postSummary = require('@services/postSummaryService');
 
 exports.index = async (req, res) => {
-    // const users = await userModel.findAll(['id', 'full_name']);
-    const posts = await postModel.findAll();
+    const totalPosts = await postModel.count();
+    const postsPerPage = 2;
+    const pagination = paginationService.pagination(req, totalPosts, postsPerPage);
+
+    // when we have only 3 pages and use requested ?page=4
+    if ('page' in req.query && parseInt(req.query.page) > pagination.totalPages) {
+        return res.redirect('/');
+    }
+    
+    const posts = await postModel.findAll(pagination.page, postsPerPage);
     const peresentedPosts = posts.map((post) => {
         post.created = dateService.normalDate(post.created_at);
         post.summary = postSummary.summary(post.content);
@@ -14,6 +23,12 @@ exports.index = async (req, res) => {
     });
     res.render('front/home', {
         layout: 'front',
-        post: peresentedPosts
+        post: peresentedPosts,
+        pagination,
+        helpers: {
+            hideItem: (isHide, options) => {
+                return isHide ? '' : 'none';
+            }
+        }
     });
 };

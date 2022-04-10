@@ -35,17 +35,20 @@
 
 <hr class="invis">
 
-{{!-- <div class="row">
+<div class="row">
     <div class="col-md-12">
-        <nav aria-label="Page navigation">
+        <nav aria-label="Page navigation" style="display: {{#hideItem pagination.hasMore}}{{/hideItem}};">
             <ul class="pagination justify-content-start">
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    <a class="page-link" style="display: {{#hideItem pagination.hasPrevPage}}{{/hideItem}};" href="/?page={{pagination.prevPage}}">Prev</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="/?page={{pagination.page}}">{{pagination.page}}</a></li>
+                <li class="page-item"><p class="page-item-between-numbers"> of </p></li>
+                <li class="page-item"><a class="page-link" href="/?page={{pagination.totalPages}}">{{pagination.totalPages}}</a></li>
+                <li class="page-item">
+                    <a class="page-link" style="display: {{#hideItem pagination.hasNextPage}}{{/hideItem}};" href="/?page={{pagination.nextPage}}">Next</a>
                 </li>
             </ul>
         </nav>
     </div><!-- end col -->
-</div><!-- end row --> --}}
+</div><!-- end row -->

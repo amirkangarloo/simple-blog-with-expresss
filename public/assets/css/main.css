@@ -764,6 +764,11 @@ div.tab button:hover {
     display: inline-block;
 }
 
+.page-item-between-numbers {
+    margin: 5px 3px 5px 7px;
+    color: #a3a5a8;
+}
+
 .page-link {
     background-color: #edeff2 !important;
     border: 0 dashed #e2e2e2;
@@ -939,7 +944,7 @@ div.tab button:hover {
 }
 
 .blog-title-area .breadcrumb-item.active,
-.blog-title-area .breadcrumb-item + .breadcrumb-item::before,
+.blog-title-area .breadcrumb-item+.breadcrumb-item::before,
 .blog-title-area .blog-meta small,
 .blog-title-area a {
     color: #a3a5a8;
@@ -1170,7 +1175,7 @@ hr.invis3 {
     background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 30%);
     background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 30%);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 30%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000', GradientType=1);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#00000000', GradientType=1);
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
@@ -1226,7 +1231,7 @@ hr.invis3 {
     background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 50%);
     background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 50%);
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 50%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000', GradientType=1);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#00000000', GradientType=1);
 }
 
 .post-media:hover .hovereffect span::before,
