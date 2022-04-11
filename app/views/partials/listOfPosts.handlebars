@@ -1,0 +1,54 @@
+<div class="page-wrapper">
+    <div class="blog-top clearfix">
+        <h4 class="pull-left">Recent Posts <a><i class="fa fa-rss"></i></a></h4>
+    </div><!-- end blog-top -->
+
+    <div class="blog-list clearfix">
+
+        {{#each post}}
+
+        <div class="blog-box row">
+            <div class="col-md-4">
+                <div class="post-media">
+                    <a href="tech-single.html" title="">
+                        <img src="/static/assets/upload/tech_blog_01.jpg" alt="" class="img-fluid">
+                        <div class="hovereffect"></div>
+                    </a>
+                </div><!-- end media -->
+            </div><!-- end col -->
+
+            <div class="blog-meta big-meta col-md-8">
+                <h4><a href="/blog/{{this.slug}}" title="">{{this.title}}</a></h4>
+                <p> {{this.summary}} </p>
+                <small><a href="tech-single.html" title="">{{this.created}}</a></small>
+                <small><a href="tech-author.html" title="">by {{this.full_name}}</a></small>
+                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
+                        {{this.views}}</a></small>
+            </div><!-- end meta -->
+        </div><!-- end blog-box -->
+        <hr class="invis">
+
+        {{/each}}
+
+    </div><!-- end blog-list -->
+</div><!-- end page-wrapper -->
+
+<hr class="invis">
+
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="Page navigation" style="display: {{#hideItem pagination.hasMore}}{{/hideItem}};">
+            <ul class="pagination justify-content-start">
+                <li class="page-item">
+                    <a class="page-link" style="display: {{#hideItem pagination.hasPrevPage}}{{/hideItem}};" href="/?page={{pagination.prevPage}}">Prev</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="/?page={{pagination.page}}">{{pagination.page}}</a></li>
+                <li class="page-item"><p class="page-item-between-numbers"> of </p></li>
+                <li class="page-item"><a class="page-link" href="/?page={{pagination.totalPages}}">{{pagination.totalPages}}</a></li>
+                <li class="page-item">
+                    <a class="page-link" style="display: {{#hideItem pagination.hasNextPage}}{{/hideItem}};" href="/?page={{pagination.nextPage}}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div><!-- end col -->
+</div><!-- end row --></hr>

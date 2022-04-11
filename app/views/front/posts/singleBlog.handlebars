@@ -1,0 +1,61 @@
+<section class="section single-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-title-area text-center">
+                        <ol class="breadcrumb hidden-xs-down">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
+                            <li class="breadcrumb-item active">{{post.title}}</li>
+                        </ol>
+
+                        <h3>{{post.title}}</h3>
+
+                        <div class="blog-meta big-meta">
+                            <small><a href="tech-single.html" title="">{{post.created}}</a></small>
+                            <small><a href="tech-author.html" title="">{{post.full_name}}</a></small>
+                            <small><a href="#" title=""><i class="fa fa-eye"></i> {{post.views}} </a></small>
+                        </div><!-- end meta -->
+
+                        <div class="post-sharing">
+                            {{> postSharing}}
+                        </div><!-- end post-sharing -->
+                    </div><!-- end title -->
+
+                    <div class="single-post-media">
+                        <img src="/static/assets/upload/tech_menu_01.jpg" alt="" class="img-fluid">
+                    </div><!-- end media -->
+
+                    <div class="blog-content">
+                        {{post.content}}
+                    </div><!-- end content -->
+                    <hr class="invis1">
+                    <div class="blog-title-area">
+
+                        <div class="post-sharing">
+                            {{> postSharing}}
+                        </div><!-- end post-sharing -->
+                    </div><!-- end title -->
+
+
+
+                    <hr class="invis1">
+
+                    <div class="custombox authorbox clearfix">
+                        {{> author}}
+                    </div><!-- end author-box -->
+
+                    <hr class="invis1">
+
+                    {{> comments}}
+
+                </div><!-- end page-wrapper -->
+            </div><!-- end col -->
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                {{> sidebar}}
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>

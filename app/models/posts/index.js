@@ -35,6 +35,17 @@ exports.find = async (postId) => {
     return rows.length > 0 ? rows[0] : false;
 };
 
+exports.findByPostSlug = async (postSlug) => {
+    const [rows] = await db.query(`
+        SELECT posts.*,users.full_name
+        FROM posts
+        LEFT JOIN users
+        ON posts.author_id=users.id
+        WHERE slug=? LIMIT 1
+    `, [postSlug]);
+    return rows.length > 0 ? rows[0] : false;
+};
+
 exports.create = async (postData) => {
     const [result] = await db.query(
         `INSERT INTO posts SET ?`,
