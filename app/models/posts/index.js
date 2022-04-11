@@ -37,11 +37,7 @@ exports.find = async (postId) => {
 
 exports.findByPostSlug = async (postSlug) => {
     const [rows] = await db.query(`
-        SELECT posts.*,users.full_name
-        FROM posts
-        LEFT JOIN users
-        ON posts.author_id=users.id
-        WHERE slug=? LIMIT 1
+        SELECT * FROM posts WHERE slug=? LIMIT 1
     `, [postSlug]);
     return rows.length > 0 ? rows[0] : false;
 };

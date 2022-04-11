@@ -28,6 +28,7 @@
     "express-handlebars": "^5.3.5",
     "express-mysql-session": "^2.1.7",
     "express-session": "^1.17.2",
+    "gravatar": "^1.8.2",
     "module-alias": "^2.2.2",
     "moment": "^2.29.1",
     "mysql2": "^2.3.3"
