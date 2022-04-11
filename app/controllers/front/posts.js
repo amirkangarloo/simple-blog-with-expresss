@@ -9,7 +9,7 @@ exports.showSinglePost = async (req, res) => {
     const postSlug = req.params.post_slug;
     const post = await postModel.findByPostSlug(postSlug); 
     if (post === false) {
-        return res.redirect('/');
+        return res.redirect('/404');
     };
 
     const presentedPost =  [post].map((post) => {
