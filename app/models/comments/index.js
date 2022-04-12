@@ -45,3 +45,11 @@ exports.delete = async (commentId) => {
 
     return result.affectedRows > 0;
 };
+
+exports.create = async (commentData) => {
+    const [rows] = await db.query(
+        `INSERT INTO comments SET ?`,
+        [commentData]
+    );
+    return rows.affectedRows;
+};
