@@ -39,7 +39,8 @@ exports.findByPostSlug = async (postSlug) => {
     const [rows] = await db.query(`
         SELECT * FROM posts WHERE slug=? LIMIT 1
     `, [postSlug]);
-    return rows.length > 0 ? rows[0] : false;
+    return rows
+    // return rows.length > 0 ? rows[0] : false;
 };
 
 exports.create = async (postData) => {

@@ -2,12 +2,14 @@
     <h4 class="small-title">Leave a Reply</h4>
     <div class="row">
         <div class="col-lg-12">
-            <form class="form-wrapper" action="/blog/{{post.slug}}/comment" method="POST">
+            {{#each post}}
+            <form class="form-wrapper" action="/blog/{{this.slug}}/comment" method="POST">
                 <input type="text" name="user_name" class="form-control" placeholder="Your name" required>
                 <input type="email" name="user_email" class="form-control" placeholder="Email address" required>
                 <textarea class="form-control" name="comment" placeholder="Your comment" required></textarea>
                 <button type="submit" class="btn btn-primary">Submit Comment</button>
             </form>
+            {{/each}}
         </div>
     </div>
 </div>

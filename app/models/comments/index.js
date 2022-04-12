@@ -53,3 +53,13 @@ exports.create = async (commentData) => {
     );
     return rows.affectedRows;
 };
+
+exports.findByPostId = async (postId, status = commentStatus.CONFIRM) => {
+    const [rows] = await db.query(`
+        SELECT *
+        FROM comments
+        WHERE post_id=?
+        AND status=?
+    `,[postId, status]);
+    return rows;
+};

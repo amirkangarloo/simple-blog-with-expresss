@@ -6,7 +6,8 @@ const commentModel = require('@models/comments');
 exports.store = async (req, res) => {
     const authorId = 'user' in req.session ? req.session.user.author_id : null;
     const postSlug = req.params.post_slug;
-    const post = await postModel.findByPostSlug(postSlug);
+    const posts = await postModel.findByPostSlug(postSlug);
+    const post = posts[0];
     if (!post) {
         return res.redirect('/404');
     }
