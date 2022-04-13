@@ -1001,6 +1001,7 @@ div.tab button:hover {
 
 .last-child {
     margin-bottom: 0 !important;
+    margin-left: 3%;
 }
 
 .comments-list img {

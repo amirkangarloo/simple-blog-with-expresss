@@ -5,6 +5,7 @@ const userModel = require('@models/users');
 const commentModel = require('@models/comments');
 const dateService = require('@services/dateService');
 const userService = require('@services/userService');
+const _ = require('lodash');
 
 exports.showSinglePost = async (req, res) => {
     const postSlug = req.params.post_slug;
@@ -25,11 +26,21 @@ exports.showSinglePost = async (req, res) => {
         comment.created = dateService.normalDate(comment.created_at);
         return comment;
     });
+    const newComments = _.groupBy(peresentedComments, 'parent');
+    // return res.send(newComments);
     res.render('front/posts/singleBlog', {
         layout: 'front',
         post: presentedPost,
-        comment: peresentedComments,
+        comment: newComments[0],
         userImage,
-        auther
+        auther,
+        helpers: {
+            hasChildren: (commentId, options) => {
+                return commentId in newComments;
+            },
+            getChildren: (commentId, options) => {
+                return newComments[commentId];
+            }
+        }
     })
 };
