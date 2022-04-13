@@ -32,6 +32,7 @@ exports.showSinglePost = async (req, res) => {
         layout: 'front',
         post: presentedPost,
         comment: newComments[0],
+        numberOfComments: peresentedComments.length,
         userImage,
         auther,
         helpers: {

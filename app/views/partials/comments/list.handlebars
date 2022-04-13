@@ -1,0 +1,24 @@
+<div class="comments-list">
+    {{#each comment}}
+
+    <div class="media">
+        <a class="media-left" href="#">
+            <img src="{{this.image}}" alt="" class="rounded-circle">
+        </a>
+        <div class="media-body">
+
+            <h4 class="media-heading user_name"> {{this.user_name}} <small>{{this.create}}</small></h4>
+            <p> {{this.comment}} </p>
+
+            <a href="#" class="btn btn-primary btn-sm">Reply</a>
+        </div>
+    </div>
+    
+    {{#if (hasChildren this.id)}}
+    <div class="media last-child">
+        {{>comments/list comment=(getChildren this.id)}}
+    </div>
+    {{/if}}
+
+    {{/each}}
+</div>
