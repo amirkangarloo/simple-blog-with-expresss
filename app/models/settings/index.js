@@ -19,3 +19,13 @@ exports.update = async (updateFields) => {
         );
     })
 };
+
+exports.get = async (key) => {
+    const [rows] = await db.query(`
+        SELECT setting_value
+        FROM settings
+        WHERE setting_name=?
+        LIMIT 1
+    `,[key]);
+    return rows.length > 0 ? rows[0].setting_value : null
+};
