@@ -5,6 +5,7 @@ const {postStatus} = require('@models/posts/postStatus');
 const userModel = require('@models/users');
 const dateService = require('@services/dateService');
 const postValidator = require('@validators/post');
+const thumbnailService = require('@services/thumbnailService')
 
 exports.index = async (req, res) => {
     const users = await userModel.findAll(['id', 'full_name']);
@@ -43,12 +44,16 @@ exports.create = async (req, res) => {
 
 exports.store = async (req, res) => {
     const users = await userModel.findAll(['id', 'full_name']);
+    const file = req.files.thumbnail;
+    const newFileName = thumbnailService.thumbnail(file);
+
     const postData = {
         title: req.body.postTitle,
         author_id: req.body.author,
         slug: req.body.postSlug,
         content: req.body.editor1,
-        status: req.body.status
+        status: req.body.status,
+        thumbnail: newFileName
     };
     const validation = postValidator.create(postData);
     if (validation.length > 0) {
