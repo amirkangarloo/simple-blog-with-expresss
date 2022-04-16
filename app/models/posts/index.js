@@ -66,3 +66,17 @@ exports.update = async (postId, updateFields) => {
     );
     return result.length > 0 ? result[0] : false;
 };
+
+exports.findByKeyword = async (keyword) => {
+
+    const [rows, fields] = await db.query(`
+        SELECT posts.*,users.full_name
+        FROM posts
+        LEFT JOIN users
+        ON posts.author_id=users.id
+        WHERE posts.title LIKE ?
+        ORDER BY posts.created_at DESC
+    `, ['%' + keyword + '%']);
+    
+    return rows;
+};
