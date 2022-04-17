@@ -8,6 +8,7 @@ const userService = require('@services/userService');
 const paginationService = require('@services/paginationService');
 const postSummary = require('@services/postSummaryService');
 const settingService = require('@services/settingService');
+const latestPostsService = require('@services/latestPostsService');
 const _ = require('lodash');
 
 exports.showSinglePost = async (req, res) => {
@@ -30,12 +31,16 @@ exports.showSinglePost = async (req, res) => {
         return comment;
     });
     const newComments = _.groupBy(peresentedComments, 'parent');
-    // return res.send(newComments);
+    
+    // get latest posts
+    const latestPosts = await latestPostsService.index();
+
     res.render('front/posts/singleBlog', {
         layout: 'front',
         post: presentedPost,
         comment: newComments[0],
         numberOfComments: peresentedComments.length,
+        latestPosts,
         userImage,
         auther,
         helpers: {
