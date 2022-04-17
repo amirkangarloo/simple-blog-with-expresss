@@ -13,7 +13,7 @@ exports.index = async (req, res) => {
 
     // when we have only 3 pages and use requested ?page=4
     if ('page' in req.query && parseInt(req.query.page) > pagination.totalPages) {
-        return res.redirect('/');
+        return res.redirect('/404');
     }
     
     const posts = await postModel.findAll(pagination.page, postsPerPage);
