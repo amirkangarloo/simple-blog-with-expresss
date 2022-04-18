@@ -78,7 +78,7 @@ Simple blog with NodeJs, Express, MySQL, Handlebars, HTML, CSS, JS and Bootstrap
 
 
 ## .env file
-create **.env** file like below stracture.
+create **.env** file like below structure.
 
     #app
     APP_PORT=5000
