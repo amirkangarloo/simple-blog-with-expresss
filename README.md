@@ -1,6 +1,8 @@
 # Simple blog with expresss
 Simple blog with NodeJs, Express, MySQL, Handlebars, HTML, CSS, JS and Bootstrap.
 
+In this project, use MVC architectural pattern.
+
 ## Database
 - **Use MySQL database in this project with structure below.**
 
